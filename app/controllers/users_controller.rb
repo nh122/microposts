@@ -23,13 +23,22 @@ class UsersController < ApplicationController
   end
   
   def update
-    if @user.update(user_params)
-      # 保存に成功した場合はプロフィールページへリダイレクト
-      redirect_to current_user , notice: 'ユーザー情報を編集しました'
+    if @user.id == current_user.id
+      if @user.update(user_params)
+        # 保存に成功した場合はプロフィールページへリダイレクト
+        redirect_to current_user
+        flash[:success] =  'ユーザー情報を編集しました'
+      else
+        # 保存に失敗した場合は編集画面へ戻す
+        render 'edit'
+      end
+
     else
-      # 保存に失敗した場合は編集画面へ戻す
+      flash.now[:danger] = '自分以外のユーザーのプロフィールは編集できません。'
       render 'edit'
     end
+
+
   end
 
   private
