@@ -23,21 +23,14 @@ class UsersController < ApplicationController
   end
   
   def update
-    if @user.id == current_user.id
-      if @user.update(user_params)
-        # 保存に成功した場合はプロフィールページへリダイレクト
-        redirect_to current_user
-        flash[:success] =  'ユーザー情報を編集しました'
-      else
-        # 保存に失敗した場合は編集画面へ戻す
-        render 'edit'
-      end
-
+    if @user.update(user_params)
+      # 保存に成功した場合はプロフィールページへリダイレクト
+      redirect_to current_user
+      flash[:success] =  'ユーザー情報を編集しました'
     else
-      flash.now[:danger] = '自分以外のユーザーのプロフィールは編集できません。'
+      # 保存に失敗した場合は編集画面へ戻す
       render 'edit'
     end
-
 
   end
 
@@ -50,5 +43,13 @@ class UsersController < ApplicationController
   
   def set_user
     @user = User.find(params[:id])
+
+    if !logged_in?
+      flash[:danger] = "ログインしてください。"
+      redirect_to login_path
+    elsif @user.id != current_user.id
+      flash[:danger] = '自分以外のユーザーのプロフィールは編集できません。'
+      redirect_to root_path
+    end
   end
 end
