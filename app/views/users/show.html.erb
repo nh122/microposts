@@ -3,15 +3,11 @@
   <%= @user.name %>
 </h1>
 
+
+
 <div class="container">
   <div class="col-md-offset-2 col-md-8 table-responsive">
-    <table class="table table-striped table-bordered">
-      <thead class="hidden">
-        <tr>
-          <th>項目</th>
-          <th>内容</th>
-        </tr>
-      </thead>
+    <table class="table table-striped table-bordered" id="profile">
       <tbody>
         <tr>
           <th>名前</th>
@@ -31,5 +27,9 @@
         </tr>
       </tbody>
     </table>
+    
+    <% if @user.id == current_user.id %>
+      <%= link_to "プロフィール編集", edit_user_path(current_user.id) %>
+    <% end %>
   </div>
 </div>
