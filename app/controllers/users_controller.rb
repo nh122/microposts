@@ -1,12 +1,21 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update]
+  before_action :set_user, only: [:show, :followings, :followers, :edit, :update]
+  before_action :check_user, only: [:edit, :update]
 
   def show
-    @user = User.find(params[:id])
     @microposts = @user.microposts.order(created_at: :desc)
+    followings
+    followers
   end
   
-  
+  def followings
+    @following_users = @user.following_users.order(created_at: :desc)
+  end
+    
+  def followers
+    @follower_users = @user.follower_users.order(created_at: :desc)
+  end
+    
   def new
     @user = User.new
   end
@@ -45,7 +54,9 @@ class UsersController < ApplicationController
   
   def set_user
     @user = User.find(params[:id])
+  end
 
+  def check_user
     if !logged_in?
       flash[:danger] = "ログインしてください。"
       redirect_to login_path
@@ -54,4 +65,5 @@ class UsersController < ApplicationController
       redirect_to root_path
     end
   end
+
 end
