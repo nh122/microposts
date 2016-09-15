@@ -1,6 +1,6 @@
 <li id="user-<%= user.id %>">
-  <%= gravatar_for @user, options = { size: 80 } %></span>
-  <div class="ff_follow_form"><%= render 'follow_form_ff' if logged_in? %></div>
+  <%= gravatar_for user, options = { size: 80 } %></span>
+  <div class="ff_follow_form"><%= render 'follow_form_ff', follow_user: user if logged_in? %></div>
   <div class="name"><%= link_to user.name, user %></div>
   <div class="id"><%= link_to "ID:#{user.id}", user %></div>
   <div class="profile"><%= user.profile %></div>

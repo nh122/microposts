@@ -118,6 +118,9 @@ aside {
   section.user_info {
     margin-top: 20px;
   }
+  section.user_data {
+    margin:-10px 25px 0 0;
+  }
   section {
     padding: 10px 0;
     margin-top: 20px;
@@ -136,6 +139,18 @@ aside {
       letter-spacing: -1px;
       margin-bottom: 3px;
       margin-top: 0px;
+    }
+    .user-status {
+      list-style: none;
+      padding: 0;
+      li {
+        margin:5px;
+        border-bottom: 1px solid #e8e8e8;
+        line-height: 1.2em;
+      }
+      .place{
+        padding-bottom: 0.75em;
+      }
     }
   }
 }

@@ -10,9 +10,15 @@
         <li><%= link_to "Followings", followings_path(params[:id]) %> (<%= @following_users.count %>)</li>
       </ul>
     </section>
+    <section class="user_data">
+      <ul class="user-status">
+        <li class="place"><span class="glyphicon glyphicon-home"></span> <%= @user.place %></li>
+        <li><%= simple_format(@user.profile) %></li>
+      </ul>
+    </section>
   </aside>
   <div class="col-md-8">
-    <%= render 'follow_form' if logged_in? %>
+    <%= render 'follow_form', follow_user: @user if logged_in? %>
     <% if @user.microposts.any? %>
       <h3>Microposts (<%= @user.microposts.count %>)</h3>
       <ol class="microposts">
