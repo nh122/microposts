@@ -1,10 +1,21 @@
-<div class="row">
-  <div class="col-md-offset-2 col-md-8">
-    <% if true %>
-      <h3>Followers (<%= @follower_users.count %>)</h3>
-      <ul class="user-list">
-        <%= render @follower_users %>
+<div class="row ff-container">
+  <aside class="ff-user">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+      <ul class="follow-status">
+        <li><%= link_to "Followers", followers_path(params[:id]) %> (<%= @follower_users.count %>)</li>
+        <li><%= link_to "Followings", followings_path(params[:id]) %> (<%= @following_users.count %>)</li>
       </ul>
-    <% end %>
+    </section>
+  </aside>
+  <div class="ffusers">
+    <h3>Followers (<%= @follower_users.count %>)</h3>
+    <ul class="user-list">
+      <%= render @follower_users %>
+    </ul>
   </div>
 </div>
+

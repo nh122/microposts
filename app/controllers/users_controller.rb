@@ -4,16 +4,15 @@ class UsersController < ApplicationController
 
   def show
     @microposts = @user.microposts.order(created_at: :desc)
-    followings
-    followers
+    set_ff
   end
   
   def followings
-    @following_users = @user.following_users.order(created_at: :desc)
+    set_ff
   end
     
   def followers
-    @follower_users = @user.follower_users.order(created_at: :desc)
+    set_ff
   end
     
   def new
@@ -64,6 +63,11 @@ class UsersController < ApplicationController
       flash[:danger] = '自分以外のユーザーのプロフィールは編集できません。'
       redirect_to root_path
     end
+  end
+
+  def set_ff
+    @following_users = @user.following_users.order(created_at: :desc)
+    @follower_users = @user.follower_users.order(created_at: :desc)
   end
 
 end

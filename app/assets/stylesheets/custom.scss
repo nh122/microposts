@@ -15,6 +15,12 @@ textarea {
   resize: vertical;
 }
 
+@media (min-width: 1400px){
+  .container {
+      width: 1360px;
+  }
+}
+
 .center {
   text-align: center;
 }
@@ -179,23 +185,74 @@ aside {
   }
 }
 
-/* user-list */
+/* followings and followers */
+.ff-container{
+  margin:auto;
+  h3 {
+    width:320px;
+  }
+}
+.ff-user{
+  width:320px;
+  float:left;
+}
+@media (min-width: 640px){
+  .ff-ffusers{
+    margin-left:320px;
+  }
+}
 
+/* user-list */
 .user-list {
   list-style: none;
   padding: 0;
   li {
-    padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
-  }
-  .user {
-    margin-top: 5em;
-    padding-top: 0;
+    margin:5px;
+    padding: 15px;
+    border: 1px solid #e8e8e8;
+    border-radius: 5px;
+    display:inline-block;
+    width:320px;
+    height:260px;
   }
   .gravatar {
-    float: left;
-    margin-right: 10px;
-    margin-top: 2px;
+    width:80px;
+    height:80px;
+  }
+  .ff_follow_form{
+    width:100px;
+    margin:48px 0 0 85px;
+    display:inline-block;
+  }
+  .name{
+    font-size:26px;
+    margin: 2px 0;
+    clear:both;
+    width:100%;
+
+    //テキスト省略
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .id{
+    font-size:14px;
+    margin: 1px 0 2px;
+  }
+  .profile{
+    font-size:16px;
+    margin:5px 0;
+    height:90px;
+    width:100%;
+
+    //テキスト省略
+    display: -webkit-box;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
   }
 }
 
