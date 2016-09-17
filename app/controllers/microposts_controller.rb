@@ -1,5 +1,6 @@
 class MicropostsController < ApplicationController
   before_action :logged_in_user, only: [:create]
+  before_action :redirect_search, only: [:search]
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
@@ -20,8 +21,29 @@ class MicropostsController < ApplicationController
     redirect_to request.referrer || root_url
   end
   
+  def search
+    divide_keywords
+    @microposts = Micropost.search(content_cont_all: @keywords).result.order(created_at: :desc)
+  end
+
   private
   def micropost_params
     params.require(:micropost).permit(:content)
+  end
+  
+  def divide_keywords
+    unless params[:keyword].nil? 
+      @keywords = params[:keyword].gsub(/　/,' ').split(' ')
+    end
+  end
+  
+  def redirect_search
+    unless params[:key].nil?
+      if params[:key].empty?
+        redirect_to search_path
+      else
+        redirect_to search_keyword_path(params[:key])
+      end
+    end
   end
 end

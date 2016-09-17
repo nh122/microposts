@@ -280,3 +280,22 @@ aside {
     padding: 4px 0;
   }
 }
+
+/* search */
+.nodata{
+  margin:15px 10px;
+  font-size:1.5em;
+}
+#header_search{
+  margin-top:12px;
+  margin-right:7px;
+  input{
+    display:inline-block;
+  }
+  input[type="text"]{
+    width:200px;
+  }
+  input[type="submit"]{
+    width:40px;
+  }
+}

@@ -12,6 +12,14 @@
       </div>
       <div class="collapse navbar-collapse" id="site-menu">
         <ul class="nav navbar-nav navbar-right">
+          <li>
+            <%= form_tag(search_path, method: :get, id: 'header_search') do %>
+              <%= text_field_tag :key, params[:keyword] , id: 'header_key', placeholder: 'Search keyword' %>
+              <%= button_tag( class: "btn btn-default btn-xs") do %>
+                <%= content_tag :span, "Search", class: "glyphicon glyphicon-search" %>
+              <% end %>
+            <% end %>
+          </li>
           <li><%= link_to "Home", root_path %></li>
           <li><%= link_to "Help", '#' %></li>
           <% if logged_in? %>

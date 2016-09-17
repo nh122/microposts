@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  get 'search' ,          to: 'microposts#search',  as: 'search'
+  get 'search/:keyword' , to: 'microposts#search',  as: 'search_keyword'
+
   root to: 'static_pages#home'
   get    'signup', to: 'users#new'
   get    'login' , to: 'sessions#new'
